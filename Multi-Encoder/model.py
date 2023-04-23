@@ -3,7 +3,6 @@ import torch.nn as nn
 from transformers import AutoModel
 
 
-
 ''' Multihead Attention Layer '''
 class Multihead_Attention(nn.Module):
     # n_heads：number of heads
