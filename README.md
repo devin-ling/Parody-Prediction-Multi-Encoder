@@ -6,4 +6,4 @@ The main part of the paper to reproduce is the three encoders (parody, humor, an
 
 For some of the data sets, they can be found [here](https://drive.google.com/drive/folders/1paWwBOjfYeN2IqqwHVh65AyLWt7iRf0M?usp=sharing) (or via tracking down from the original source paper). Data sets used but not in the above folder, such as the rest of the parody data set and the full sarcasm data set, can be obtained by contacting the original owners due to copyright issues.
 
-Also, note that due to our own GPU limits, we utilized Google Colab's GPU to run and create all of the models / encoders.
+Also, note that due to our own GPU limits, we utilized Google Colab's GPUs to run and create all of the models / encoders.
