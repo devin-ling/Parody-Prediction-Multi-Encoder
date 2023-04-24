@@ -51,7 +51,7 @@ class SarcasmTrainer:
         finetune_trainer.train()
 
         # Save the finetuned model
-        save_path = "/content/drive/MyDrive/s_pre"
+        save_path = "/content/drive/My Drive/data/s_pre"
         model.save_pretrained(save_path)
         self.tokenizer.save_pretrained(save_path)
 
