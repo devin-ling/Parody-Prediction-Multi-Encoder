@@ -1,14 +1,15 @@
 import torch
 import torch.nn as nn
 from transformers import AutoModel
-
+from ..SarcasmEncoder.s_train import SarcasmTrainer
+from ..HumorEncoder.h_train import HumorTrainer
 
 ''' Multihead Attention Layer '''
-class Multihead_Attention(nn.Module):
+class MultiheadAttention(nn.Module):
     # n_heads：number of heads
     # hid_dim：the hidden dimension
     def __init__(self, hid_dim, n_heads, dropout):
-        super(Multihead_Attention, self).__init__()
+        super(MultiheadAttention, self).__init__()
         self.hid_dim = hid_dim
         self.n_heads = n_heads
 
@@ -56,9 +57,9 @@ class Multihead_Attention(nn.Module):
     
 
 ''' Self-Attention Model '''
-class Combo_Model_Attention(nn.Module):
+class ComboModelAttention(nn.Module):
     def __init__(self):
-        super(Combo_Model_Attention, self).__init__()
+        super(ComboModelAttention, self).__init__()
         
         self.h_model = AutoModel.from_pretrained('/content/drive/My Drive/data/h_pre')
         self.s_model = AutoModel.from_pretrained('/content/drive/My Drive/data/s_pre')
@@ -67,7 +68,7 @@ class Combo_Model_Attention(nn.Module):
         self.layernorm = nn.LayerNorm(768, eps=1e-05, elementwise_affine=True)
         self.linear1 = nn.Linear(768, 2, bias = True) # output features from bert is 768 and 2 is ur number of labels
         self.linear2 = nn.Linear(768, 768, bias = True)
-        self.attention = Multihead_Attention(768, 6, dropout=0.1)
+        self.attention = MultiheadAttention(768, 6, dropout=0.1)
         
     def forward(self, input_ids=None, attention_mask=None, token_type_ids=None, labels=None):
         # self.attention.to('cuda')
@@ -104,9 +105,9 @@ class Combo_Model_Attention(nn.Module):
         
 
 ''' Concat and Max Pool Models '''
-class Combo_Model_Other(nn.Module):
+class ComboModelOther(nn.Module):
     def __init__(self):
-        super(Combo_Model_Other, self).__init__()
+        super(ComboModelOther, self).__init__()
         
         self.h_model = AutoModel.from_pretrained('/content/drive/MyDrive/data/h_pre')
         self.s_model = AutoModel.from_pretrained('/content/drive/MyDrive/data/s_pre') 
